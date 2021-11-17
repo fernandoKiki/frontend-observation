@@ -11,12 +11,12 @@ export default function Navbar(){
             <a>Observation</a>
             </Link>
 
-            <Link href= 'objetive'>
+            <Link href= '/objetive'>
             <a>Objetive</a>
             </Link>
 
-            <Link href= 'temporal-treatment'>
-            <a>Temporal Treatment</a>
+            <Link href= '/observation/create'>
+            <a>CreateObservation</a>
             </Link>
 
             <style jsx>

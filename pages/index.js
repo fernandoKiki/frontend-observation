@@ -1,6 +1,7 @@
 import Layout from "../components/layout";
 import Title from "../components/title";
-
+import {useObjetive} from '../context/objetiveContext'
+import { useObservation } from "../context/observationContenx";
 
 export default function Home(){
   return(
