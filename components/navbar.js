@@ -4,19 +4,15 @@ export default function Navbar(){
     return(
         <nav>
             <Link href= '/'>
-           <a>Home</a> 
+           <a className='font-black text-lg'>Home</a> 
             </Link>
             
             <Link href= '/observation'>
-            <a>Observation</a>
+            <a className='font-black text-lg'>Observation</a>
             </Link>
 
             <Link href= '/objetive'>
-            <a>Objetive</a>
-            </Link>
-
-            <Link href= '/observation/create'>
-            <a>CreateObservation</a>
+            <a className='font-black text-lg'>Objetive</a>
             </Link>
 
             <style jsx>

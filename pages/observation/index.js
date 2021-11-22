@@ -2,8 +2,13 @@
 import Layout from "../../components/layout";
 import Title from "../../components/title";
 import Link from "next/dist/client/link";
+import {AiOutlinePlus} from 'react-icons/ai';
+import { useRouter } from "next/dist/client/router";
 
-export default function Observation({ observation }){
+
+
+const Observation = ({observation}) => {
+    const router = useRouter();
     return(
         <Layout>
             <Title>Observation List</Title>
@@ -18,6 +23,12 @@ export default function Observation({ observation }){
                        </Link>
                    )
                })}
+            </div>
+            <div>
+                <button className='bg-blue-400 px-4 py-1 hover:bg-blue-300 inline-flex items-center'onClick={()=>router.push('observation/form')}>
+                    <AiOutlinePlus/>
+                    Add Observation
+                    </button>
             </div>
            <style jsx>
                {`
@@ -57,9 +68,11 @@ export default function Observation({ observation }){
                `}
            </style>
         </Layout>
+        
+        
     )
 }
-
+export default Observation;
 
 export async function getStaticProps() {
     const res = await fetch('http://localhost:3000/observation') // url del backend
