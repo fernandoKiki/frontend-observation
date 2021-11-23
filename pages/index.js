@@ -4,6 +4,7 @@ import {useObjetive} from '../context/objetiveContext'
 import { useObservation } from "../context/observationContenx";
 
 export default function Home(){
+ 
   return(
     <Layout>
       <Title>Welcome Frontend-Observation App!</Title>

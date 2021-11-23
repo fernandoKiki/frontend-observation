@@ -1,37 +1,56 @@
 import React from "react";
 import Layout from "../../components/layout";
 import {AiOutlinePlus} from 'react-icons/ai';
-import { data } from "autoprefixer";
 
 class ObservationFrom extends React.Component {
-    super(props){
+    constructor(props){
+    super(props);
         this.state= {
-            name: ""
-        }
-        this.changeName= this.changeName.bind(this.name);
+            name: "",
+        };
+        this.changeName= this.changeName.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
     
     changeName(event) {
         this.setState({
-            name: event.target.value
+            name: event.target.value,
         });
     }
-    handleSubmit(){
-        postData('http://localhost:3000/observation', this.state)
+   async handleSubmit(ev){
+        ev.preventDefault();
+        const response = await fetch('http://localhost:3000/observation', {
+            method: 'POST',
+            cache: 'no-cache',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            redirect: 'follow',
+            referrerPolicy: 'no-referrer',
+            body: JSON.stringify({...this.state})
+        });
+        console.log(this.state)
+        const observation = await response.json();
+        return {
+            props: {
+                observation,
+            },
+        }
+     
     }
     
     render(){
         return(
-            <form action='http://localhost:3000/observation' method="POST">
+            <form onSubmit={this.handleSubmit}>
             <Layout>
             <h1>
             Add Observation
             </h1>
             <div>
-            <input name="name" type="text" placeholder="name observation" className="w-full mb-5" value={this.state}></input>
+            <input name="name" type="text" placeholder="name observation" className="w-full mb-5" value={this.state.name} onChange={this.changeName}></input>
             </div>
-            <button className='bg-blue-400 px-2 py-0.5 hover:bg-blue-300 inline-flex items-center'
-            onClick={postData}>
+            <button className='bg-blue-400 px-2 py-0.5 hover:bg-blue-300 inline-flex items-center'type="submit">
             <AiOutlinePlus/>
             SAVE
             </button>
@@ -42,15 +61,3 @@ class ObservationFrom extends React.Component {
     }
     export default ObservationFrom;
     
-    export async function postData(url='http://localhost:3000/observation', data ={name}){
-    const response = await fetch(url, {
-        method: 'POST',
-        body: JSON.stringify(data)
-    });
-    const observation = await response.json();
-    return {
-        props: {
-            observation,
-        },
-    }
-}

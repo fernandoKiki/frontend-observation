@@ -9,5 +9,7 @@ export default function idObservation(){
             <h2>Observation Details</h2>
             <p>Observation id: {router.query.id}</p>
         </Layout>
+       
     )
 }
+
